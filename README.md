@@ -3,7 +3,7 @@
 # An API for belief networks in python
 ## Implementing the *varaible elimination algorithm*
 
-* Download, unzip, and cd in the file `elimination.zip`
+* Git clone this repository or download, unzip, and cd in this repository `Credal-Networks.zip`
 * Open a new notebook in the same directory
 * Add the follwing line at the beginning of the code
 
