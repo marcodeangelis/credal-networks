@@ -8,7 +8,7 @@
 * Add the follwing line at the beginning of the code
 
 ```python
-from library.elimination import BeliefNetwork
+from pyLib.elimination import BeliefNetwork
 ```
 
 
@@ -63,7 +63,7 @@ The CPT values are those associated with the `True` states of the node variable.
 
 
 ```python
-from library.elimination import BeliefNetwork
+from pyLib.elimination import BeliefNetwork
 ```
 
 
