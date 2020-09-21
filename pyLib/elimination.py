@@ -112,7 +112,6 @@ class BeliefNetwork():
         perm = list(itertools.permutations(leftovers))
         if len(leftovers)>10: # more than 3628800 permutations
             print('Cap the nummber of permutaions!')
-        TOTAL_SIZE = []
         SIZE_INFO = {}
         OPTIM = []
         min_f_size = float('inf')
@@ -199,10 +198,12 @@ class Node():
         self.makeHashTable()    # this generates the object hashtable which will be used to inject the evidence
         self.__varIndex = {}    # {dictionary}
         self.makeVarIndex()
-        self.__pandasCPT= None  # {Pandas DataFrame}
-        self.makePandasTABLE()
+        # self.__pandasCPT= None  # {Pandas DataFrame}
+        # self.makePandasTABLE()
         self.__Factor = Factor(hashtable=self.__hashtable.copy())
         # End of constructor
+    def show(self):
+        return self.makePandasTABLE()
     def completeCPT(self):
         CPT1 = self.__halfCPT  # CPT values beginning with child
         CPT2 = [1-p for p in CPT1]
@@ -223,12 +224,11 @@ class Node():
                 d[v] = i
             self.__varIndex = d
     def makePandasTABLE(self):
-        if self.__pandasCPT is None:
-            table = self.__table
-            header= self.__header
-            N = self.__N
-            df = DataFrame(table[1:], columns=header, index=[i+1 for i in range(2**N)])
-            self.__pandasCPT = df
+        table = self.__table
+        header= self.__header
+        N = self.__N
+        df = DataFrame(table[1:], columns=header, index=[i+1 for i in range(2**N)])
+        return df
     def makeStringHeader(self):
         if len(self.__header)==0:
             parents = ''
@@ -251,7 +251,7 @@ class Node():
     def Factor(self):
         return self.__Factor
     def CPT(self):
-        return self.__pandasCPT
+        return self.show()
     def Description(self):
         return self.__description
     def __or__(self,other):
@@ -307,18 +307,13 @@ class Factor():
         self.__varIndex = {}    # {dictionary}
         self.makeVarIndex()
         self.__values = self.getValues()
-        self.__pandasHT = None # This is for class access only
-        self.__pandasHT = self.makePandasTABLE()
     def show(self):
-        return self.__pandasHT
+        return self.makePandasTABLE()
     def makePandasTABLE(self):
-        if self.__pandasHT is None: # This is for class access only
-            ht = self.__hashtable.copy()
-            table = [list(ki) + [ht[ki]] for ki in ht]
-            N = self.__N
-            df = DataFrame(table[1:], columns=table[0], index=[i+1 for i in range(2**N)])
-            self.__pandasHT = df
-            return df
+        ht = self.__hashtable.copy()
+        table = [list(ki) + [ht[ki]] for ki in ht]
+        N = self.__N
+        return DataFrame(table[1:], columns=table[0], index=[i+1 for i in range(2**N)])
     def makeVarIndex(self):
         if len(self.__varIndex)==0:
             d = {}
@@ -421,7 +416,7 @@ class Factor():
         vF = self.getValues(ht_F)
         values = array(vT) + array(vF) # Summation done between numpy arrays
         allvars = next(iter(self.__hashtable))
-        varRemain = set(allvars).difference(set(var))
+        varRemain = set(allvars).difference(set([var]))
         newHeader = tuple(sorted(varRemain, key=allvars.index))
         indexes = tuple([self.__varIndex[var] for var in newHeader])
         HT_sumout = {newHeader: ''}
