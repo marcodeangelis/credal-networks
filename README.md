@@ -8,7 +8,7 @@
 * Add the follwing line at the beginning of the code
 
 ```python
-from library.elimination import BeliefNetwork
+from pyLib.elimination import BeliefNetwork
 ```
 
 
@@ -63,7 +63,7 @@ The CPT values are those associated with the `True` states of the node variable.
 
 
 ```python
-from library.elimination import BeliefNetwork
+from pyLib.elimination import BeliefNetwork
 ```
 
 
@@ -87,7 +87,7 @@ The joint probability distribution can be obtained multiplying at once all the f
 
 `P(A, B, C, D, E) = P(A) * P(B|A) * P(C|A) * P(D|BC) * P(E|C)`
 
-From the above joint distribution we any further query on the network can be performed. For example we could ask what is the marginal distribution P(E). This will be done by summing out all the variables except E from the joint P(A, B, C, D, E).
+From the above joint distribution any further query on the network can be performed. For example we could ask what is the marginal distribution P(E). This will be done by summing out all the variables except E from the joint P(A, B, C, D, E).
 
 
 Because this network is small, the joint distribution can be explicitly displayed. The full joint distribution can be computed as follows:
