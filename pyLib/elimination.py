@@ -337,10 +337,10 @@ class Factor():
             return [tr for tr in zip(*TreeTF)]
     def size(self):
         return 2**len(self.__VARS)
-    def pop(self,v):
+    def pop(self,var):
         ht = self.__hashtable.copy()
         vars = set(next(iter(ht)))
-        vars_minus_v = vars.difference(set(v))
+        vars_minus_v = vars.difference(set([var]))
         HT = {tuple(vars_minus_v): ''}
         return Factor(hashtable=HT)
     def premultiply(self,other):
