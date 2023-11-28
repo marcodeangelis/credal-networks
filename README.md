@@ -1,7 +1,8 @@
 <!-- # Variable elimination algorithm -->
 
-# An API for belief networks in python
-## Implementing the *varaible elimination algorithm*
+# Belief Networks in python via exact *varaible elimination*.
+
+This repository was created as a basis to try out new credal networks algorithms. 
 
 * Git clone this repository or download, unzip, and cd in this repository `Credal-Networks.zip`
 * Open a new notebook in the same directory
