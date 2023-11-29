@@ -58,7 +58,7 @@ E = {
 }
 ```
 
-The key `'Parent'` in the above node dictionaries define the architecture of the network.
+The key `'Parents'` in the above node dictionaries define the architecture of the network.
 
 The CPT values are those associated with the `True` states of the node variable. With more than two parents this may need additional specifications for the user.
 
